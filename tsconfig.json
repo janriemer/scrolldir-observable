@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+      "sourceMap": true,
+      "declaration": false,
+      "moduleResolution": "node",
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "lib": [
+        "es2016",
+        "dom"
+      ],
+      "outDir": "./",
+      "target": "es5",
+      "baseUrl": "",
+      "types": [],
+      "typeRoots": [
+        "./node_modules/@types"
+      ],
+    },
+    "include": [
+      "./**/*.ts"
+    ],
+    "exclude": [
+      "node_modules"
+    ]
+}

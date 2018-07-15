@@ -1,0 +1,35 @@
+{
+  "name": "scrolldir-observable",
+  "version": "1.0.0",
+  "description": "An observable for getting the scroll direction.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec --require ts-node/register index.spec.ts",
+    "compile": "tsc"
+  },
+  "keywords": [
+    "observable",
+    "rxjs",
+    "scroll",
+    "reactive programming"
+  ],
+  "author": "Jan Riemer <janriemer@tutanota.de>",
+  "license": "MIT",
+  "dependencies": {
+    "rxjs": "^6.2.1"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.4",
+    "@types/jsdom": "^11.0.6",
+    "@types/mocha": "^5.2.4",
+    "@types/puppeteer": "^1.5.0",
+    "chai": "^4.1.2",
+    "coffeescript": "^2.3.1",
+    "http-server": "^0.11.1",
+    "jsdom": "^11.11.0",
+    "mocha": "^5.2.0",
+    "puppeteer": "^1.6.0",
+    "ts-node": "^7.0.0",
+    "typescript": "^2.9.2"
+  }
+}
