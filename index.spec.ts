@@ -1,7 +1,7 @@
 import 'mocha';
 import {expect} from 'chai';
 import {JSDOM} from 'jsdom';
-import {scrollDirObservable} from './index';
+import {scrollDirObservable, Directions} from './index';
 
 describe('Testing scrollDir-observable', () => {
 
@@ -16,7 +16,7 @@ describe('Testing scrollDir-observable', () => {
     const obs$ = scrollDirObservable(dom.window.document, dom.window);
 
     obs$.subscribe(val => {
-      expect(val).to.eql('Hello');
+      expect(val).to.eql('down');
       done();
     })
 
