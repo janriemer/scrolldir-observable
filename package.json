@@ -4,14 +4,15 @@
   "description": "An observable for getting the scroll direction.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --reporter spec --require ts-node/register index.spec.ts",
+    "test": "http-server",
     "compile": "tsc"
   },
   "keywords": [
     "observable",
     "rxjs",
     "scroll",
-    "reactive programming"
+    "reactive programming",
+    "functional reactive programming"
   ],
   "author": "Jan Riemer <janriemer@tutanota.de>",
   "license": "MIT",
