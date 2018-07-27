@@ -4,7 +4,7 @@
   "description": "An observable for getting the scroll direction.",
   "main": "index.js",
   "scripts": {
-    "test": "http-server",
+    "test": "http-server & mocha --reporter nyan --require ts-node/register index.spec.ts",
     "compile": "tsc"
   },
   "keywords": [
