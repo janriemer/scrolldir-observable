@@ -6,10 +6,10 @@ export type Directions = 'up' | 'down';
 export function scrollDirObservable(element: HTMLElement | Document, windowElem: Window = window) {
 
     let scrollOffset$ = fromEvent(element, 'scroll')
-        .pipe(map(ev => 'Hello'));
+        .pipe(map(_ => "Hello"));
     return scrollOffset$;
     // .pipe(
-    //     throttleTime(50),
+    //     //throttleTime(50),
     //     map(ev => windowElem.pageYOffset)
     // );
 

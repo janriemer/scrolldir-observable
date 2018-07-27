@@ -1,28 +1,35 @@
 import 'mocha';
 import {expect} from 'chai';
-import {JSDOM} from 'jsdom';
-import {scrollDirObservable, Directions} from './index';
+import * as pupp from 'puppeteer';
+import {scrollDirObservable} from './index';
 
 describe('Testing scrollDir-observable', () => {
 
   it(`should have a scroll direction of 'down'` , (done) => {
-    const dom = new JSDOM(`<!DOCTYPE html>
-    <html>
-      <body>
-      
-      </body>
-    </html>`)
     
-    const obs$ = scrollDirObservable(dom.window.document, dom.window);
+    function assertFn() {
+      const obs$ = scrollDirObservable(window.document, window);
+      obs$.subscribe(val => {
+        expect(val).to.eql('down');
+      });
+    }
 
-    obs$.subscribe(val => {
-      expect(val).to.eql('down');
+    function scroll() {
+      window.scrollTo(0, 20);
+    }
+    
+    (async () => {
+      const browser = await pupp.launch();
+      const page = await browser.newPage();
+      await page.goto('http://localhost:8080');
+      await page.evaluate(assertFn); // TODO: this thing causes problems for us!
+      await page.evaluate(scroll);
+      await browser.close();
       done();
-    })
+    })();
 
-    const simEvent = new dom.window.Event('scroll');
+    
 
-    dom.window.document.dispatchEvent(simEvent);
   });
 
 });
