@@ -61,7 +61,7 @@ describe('Testing scrollDir-observable', function () {
                         return [4 /*yield*/, browser.newPage()];
                     case 2:
                         page = _a.sent();
-                        return [4 /*yield*/, page.goto('http://localhost:8085')];
+                        return [4 /*yield*/, page.goto('http://localhost:8080')];
                     case 3:
                         _a.sent();
                         return [4 /*yield*/, page.evaluate(assertFn)];
