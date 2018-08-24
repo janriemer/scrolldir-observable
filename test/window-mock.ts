@@ -10,13 +10,12 @@ let window : Window;
 export default class WindowMock {
 
     private windowMockMutable = Mutable(window);
-    private scrollEvent = new Event('scroll');
 
-    constructor() {
+    constructor(private scrollEvent: Event, private document: Document) {
         this.windowMockMutable = {} as any;
         this.windowMockMutable.pageXOffset = 0;
         this.windowMockMutable.pageYOffset = 0;
-        this.windowMockMutable.document = {} as any;
+        //this.windowMockMutable.document = {} as any;
     }
 
     public scrollTo(x?: number, y?: number): void;
@@ -33,10 +32,14 @@ export default class WindowMock {
             // TODO
             throw new Error('Support for options has not been implemented yet.');
         }
-        this.windowMockMutable.document.dispatchEvent(this.scrollEvent);
+        this.document.dispatchEvent(this.scrollEvent);
     }
 
     public getWindowMock() {
         return this.windowMockMutable as Window;
+    }
+
+    public getDocument() {
+        return this.document;
     }
 }

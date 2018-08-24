@@ -1,5 +1,5 @@
 import { fromEvent, Observable } from 'rxjs';
-import { map, throttleTime, pairwise, distinctUntilChanged } from 'rxjs/operators';
+import { map, throttleTime, pairwise, distinctUntilChanged, startWith } from 'rxjs/operators';
 
 export type Directions = 'up' | 'down';
 
@@ -8,7 +8,8 @@ export default function scrollDirObservable(element: HTMLElement | Document, win
     let scrollOffset$ = fromEvent(element, 'scroll')
         .pipe(
             //throttleTime(50),
-            map(ev => windowElem.pageYOffset)
+            map(ev => windowElem.pageYOffset),
+            startWith(windowElem.pageYOffset)
         );
 
         let scrollDiffs$ = scrollOffset$

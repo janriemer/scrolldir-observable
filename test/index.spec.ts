@@ -2,14 +2,23 @@ import 'mocha';
 import {expect} from 'chai';
 import scrollDirObservable from '../src';
 import WindowMock from './window-mock';
+import {JSDOM} from 'jsdom';
 
-describe('Testing scrollDir-observable', () => {
+describe('Testing scrollDir-observable...', () => {
 
-  it(`should have a scroll direction of 'down'` , (done) => {
+  beforeEach(() => {
 
-    let windowMock = new WindowMock();
+  });
+
+  it(`should have a scroll direction of 'down', when scrolled by 1 on y-axis` , (done) => {
+
+    const dom = new JSDOM(`<!DOCTYPE html>`);
+
+    const scrollEvent = new dom.window.Event('scroll');
+
+    let windowMock = new WindowMock(scrollEvent, dom.window.document);
     let scrollDirObservable$ = scrollDirObservable(
-      windowMock.getWindowMock().document, windowMock.getWindowMock()
+      windowMock.getDocument(), windowMock.getWindowMock()
     );
 
     scrollDirObservable$.subscribe(val => {
@@ -17,7 +26,7 @@ describe('Testing scrollDir-observable', () => {
       done();
     });
 
-    windowMock.scrollTo(1, 1);
+    windowMock.scrollTo(0, 1);
   });
 
 });
