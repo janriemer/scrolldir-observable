@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "An observable for getting the scroll direction.",
   "main": "dist/scrolldir-observable.umd.js",
-  "module": "dist/scrolldir-observable.es5.js",
+  "module": "dist/scrolldir-observable.esm.js",
   "typings": "dist/types/index.d.ts",
   "files": [
     "dist"
@@ -11,7 +11,8 @@
   "scripts": {
     "build": "tsc && rollup -c rollup.config.ts",
     "test": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' mocha --timeout 20000 --reporter nyan --require ts-node/register test/index.spec.ts",
-    "ci": "npm run test"
+    "prepare": "npm run build",
+    "prepublish": "check-node-version --npm \">=4\" || npm run prepare"
   },
   "keywords": [
     "observable",
@@ -31,6 +32,7 @@
     "@types/mocha": "^5.2.4",
     "@types/sinon": "^5.0.1",
     "chai": "^4.1.2",
+    "check-node-version": "^3.2.0",
     "coffeescript": "^2.3.1",
     "jsdom": "11.0.0",
     "mocha": "^5.2.0",
