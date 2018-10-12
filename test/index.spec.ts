@@ -1,16 +1,27 @@
 import 'mocha';
 import {expect} from 'chai';
-import scrollDirObservable from '../src';
+import { fakeSchedulers } from 'rxjs-marbles/mocha';
+import scrollDirObservable, { Directions } from '../src';
 import WindowMock from './window-mock';
 import {JSDOM} from 'jsdom';
+import {useFakeTimers, SinonFakeTimers} from 'sinon';
 
 describe('Testing scrollDir-observable...', () => {
 
-  beforeEach(() => {
+  let clock: SinonFakeTimers;
 
+  beforeEach(() => {
+    clock = useFakeTimers();
   });
 
-  it(`should have a scroll direction of 'down', when scrolled by 1 on y-axis` , (done) => {
+  afterEach(() => {
+    clock.restore();
+  });
+
+  it(`should have a scroll direction of 'down', when scrolled by 1 on y-axis` ,
+    fakeSchedulers(() => {
+
+    let scrollDirActual: Directions | undefined;
 
     const dom = new JSDOM(`<!DOCTYPE html>`);
 
@@ -22,11 +33,15 @@ describe('Testing scrollDir-observable...', () => {
     );
 
     scrollDirObservable$.subscribe(val => {
-      expect(val).to.eql('down');
-      done();
+      scrollDirActual = val;
     });
 
+    clock.tick(49);
+    expect(scrollDirActual).to.be.undefined;
+    clock.tick(1);
+    expect(scrollDirActual).to.eql('down');
+
     windowMock.scrollTo(0, 1);
-  });
+  }));
 
 });
