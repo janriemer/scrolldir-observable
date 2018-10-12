@@ -20,7 +20,7 @@ export default function scrollDirObservable(element: HTMLElement | Document, win
 
         return scrollDiffs$
             .pipe(
-            map(diff => diff >= 0 ? 'down' : 'up'),
-            distinctUntilChanged()
+                map(diff => diff >= 0 ? 'down' : 'up'),
+                distinctUntilChanged()
             ) as Observable<Directions>;
 }
