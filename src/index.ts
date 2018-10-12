@@ -7,7 +7,7 @@ export default function scrollDirObservable(element: HTMLElement | Document, win
 
     let scrollOffset$ = fromEvent(element, 'scroll')
         .pipe(
-            //throttleTime(50),
+            throttleTime(50),
             map(ev => windowElem.pageYOffset),
             startWith(windowElem.pageYOffset)
         );
