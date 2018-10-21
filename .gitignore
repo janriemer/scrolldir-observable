@@ -3,7 +3,7 @@
 /shrinkwrap.yaml
 /package-lock.json
 .DS_Store
-/*.js
+./**/*.js
 /*.map
 /index.d.ts
 /.rpt2_cache

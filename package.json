@@ -2,15 +2,18 @@
   "name": "scrolldir-observable",
   "version": "1.0.0",
   "description": "An observable for getting the scroll direction.",
-  "main": "dist/scrolldir-observable.umd.js",
-  "module": "dist/scrolldir-observable.esm.js",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
   "typings": "dist/types/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "rimraf dist && tsc && rollup -c rollup.config.ts",
-    "test": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' mocha --timeout 20000 --reporter nyan --require ts-node/register test/index.spec.ts",
+    "clean": "rimraf dist",
+    "build": "npm run clean && tsc && npm run build:standalone && npm run build:bundle",
+    "build:bundle": "rollup -c rollup.bundle.config.js",
+    "build:standalone": "rollup -c rollup.config.ts",
+    "test": "npm run build:bundle && TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' mocha --timeout 10000 --reporter nyan --require ts-node/register test/*.spec.ts",
     "prepare": "npm run build",
     "prepublish": "check-node-version --npm \">=4\" || npm run prepare"
   },
@@ -24,24 +27,25 @@
   "author": "Jan Riemer <janriemer@tutanota.de>",
   "license": "MIT",
   "dependencies": {
-    "rxjs": "^6.2.1"
+    "rxjs": "^6.3.3"
   },
   "devDependencies": {
     "@types/chai": "^4.1.4",
-    "@types/jsdom": "^11.0.6",
+    "@types/jsdom": "11.12.0",
     "@types/mocha": "^5.2.4",
     "@types/sinon": "^5.0.1",
     "chai": "^4.1.2",
     "check-node-version": "^3.2.0",
     "coffeescript": "^2.3.1",
-    "jsdom": "11.0.0",
+    "jsdom": "11.5.1",
     "mocha": "^5.2.0",
     "rimraf": "^2.6.2",
-    "rollup": "^0.64.1",
+    "rollup": "^0.66.6",
     "rollup-plugin-commonjs": "^9.1.5",
     "rollup-plugin-json": "^3.0.0",
     "rollup-plugin-node-resolve": "^3.3.0",
     "rollup-plugin-sourcemaps": "^0.4.2",
+    "rollup-plugin-terser": "^3.0.0",
     "rollup-plugin-typescript2": "^0.16.1",
     "rxjs-marbles": "^4.3.1",
     "sinon": "^6.1.5",
