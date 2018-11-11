@@ -1,5 +1,5 @@
 # scrolldir-observable
-[![Build Status](https://travis-ci.org/janriemer/scrolldir-observable.svg?branch=master)](https://travis-ci.org/janriemer/scrolldir-observable)
+[![Build Status](https://travis-ci.org/janriemer/scrolldir-observable.svg?branch=master)](https://travis-ci.org/janriemer/scrolldir-observable) [![Coverage Status](https://coveralls.io/repos/github/janriemer/scrolldir-observable/badge.svg?branch=master)](https://coveralls.io/github/janriemer/scrolldir-observable?branch=master)
 
 Get the direction of scrolling - as an [observable](https://github.com/ReactiveX/RxJS) ✨
 

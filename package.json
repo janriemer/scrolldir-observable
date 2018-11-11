@@ -14,6 +14,7 @@
     "build:bundle": "rollup -c rollup.bundle.config.js",
     "build:standalone": "rollup -c rollup.config.ts",
     "test": "npm run build:bundle && TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' nyc mocha test/*.spec.ts",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
     "prepare": "npm run build",
     "prepublish": "check-node-version --npm \">=4\" || npm run prepare"
   },
@@ -54,6 +55,7 @@
     "chai": "^4.1.2",
     "check-node-version": "^3.2.0",
     "coffeescript": "^2.3.1",
+    "coveralls": "^3.0.2",
     "jsdom": "11.5.1",
     "mocha": "^5.2.0",
     "nyc": "^13.1.0",
