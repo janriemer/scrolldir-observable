@@ -7,3 +7,5 @@
 /*.map
 /index.d.ts
 /.rpt2_cache
+/.nyc_output
+/coverage

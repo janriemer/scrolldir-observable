@@ -13,9 +13,26 @@
     "build": "npm run clean && tsc && npm run build:standalone && npm run build:bundle",
     "build:bundle": "rollup -c rollup.bundle.config.js",
     "build:standalone": "rollup -c rollup.config.ts",
-    "test": "npm run build:bundle && TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' mocha --timeout 10000 --reporter nyan --require ts-node/register test/*.spec.ts",
+    "test": "npm run build:bundle && TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' nyc mocha test/*.spec.ts",
     "prepare": "npm run build",
     "prepublish": "check-node-version --npm \">=4\" || npm run prepare"
+  },
+  "nyc": {
+    "extension": [
+      ".ts"
+    ],
+    "include": [
+      "src/**/*.ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ],
+    "reporter": [
+      "text-summary",
+      "html"
+    ],
+    "sourceMap": true,
+    "instrument": true
   },
   "keywords": [
     "observable",
@@ -39,6 +56,7 @@
     "coffeescript": "^2.3.1",
     "jsdom": "11.5.1",
     "mocha": "^5.2.0",
+    "nyc": "^13.1.0",
     "rimraf": "^2.6.2",
     "rollup": "^0.66.6",
     "rollup-plugin-commonjs": "^9.1.5",
@@ -49,6 +67,7 @@
     "rollup-plugin-typescript2": "^0.16.1",
     "rxjs-marbles": "^4.3.1",
     "sinon": "^6.1.5",
+    "source-map-support": "^0.5.9",
     "ts-node": "^7.0.0",
     "typescript": "^2.9.2"
   }
